@@ -21,11 +21,6 @@ con.connect(function(err){
   console.log('Connection established');
 });
 
-con.end(function(err) {
-  // The connection is terminated gracefully
-  // Ensures all previously enqueued queries are still
-  // before sending a COM_QUIT packet to the MySQL server.
-});
 // Get all files
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -49,4 +44,12 @@ app.post('/link', function (req, res) {
 // Listen on port 7002
 http.listen(7002, function() {
     console.log('listening on port 7002');
+});
+
+
+
+con.end(function(err) {
+  // The connection is terminated gracefully
+  // Ensures all previously enqueued queries are still
+  // before sending a COM_QUIT packet to the MySQL server.
 });
