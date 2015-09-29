@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/link', function (req, res) {
-    console.log("works");
+    console.log(req.body.linkKey);
 });
 
 // Listen on port 7002
