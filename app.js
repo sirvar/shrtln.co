@@ -6,7 +6,7 @@ var http = require('http').Server(app);
 var mysql = require("mysql");
 
 var con = mysql.createConnection({
-	host: "http://shrtln.co",
+	host: "localhost",
 	database: "shrtlnco",
 	user: "root",
 	password: "shrtlnco"
