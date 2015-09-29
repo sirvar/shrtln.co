@@ -42,9 +42,7 @@ app.post('/link', function (req, res) {
     var linkKey = req.body.linkKey;
     var link = req.body.linkURL;
     con.query("INSERT INTO shrtlnco (linkkey, finallink) VALUES ("+linkKey+", "+link+   ")", function(err) {
-        if(err) throw err;
-
-        console.log('err');
+        console.log(err);
     })
 });
 
