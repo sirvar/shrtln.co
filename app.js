@@ -1,5 +1,6 @@
 // Import modules
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
 var http = require('http').Server(app);
@@ -26,6 +27,11 @@ con.end(function(err) {
   // before sending a COM_QUIT packet to the MySQL server.
 });
 
+app.use(bodyParser.urlEncoded());
+app.post('/link', function (req, res, next) {
+  var data = myFunction(req.body);
+  res.json(data);
+});
 // Get all files
 app.use(express.static(path.join(__dirname, 'public')));
 
