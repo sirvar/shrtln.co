@@ -30,12 +30,17 @@ app.get('/', function(req, res) {
 
 app.get('/:link', function(req, res) {
 	var link = req.params.link;
-	console.log("at link");
-	if (checkExisting(link)) {
-		getURL(link, function(res) {
-			console.log(res);
-		});
-	}
+	checkExisting(link, function(found) {
+		if (found) {
+			getURL(link, function(result) {
+				// console.log(res[0].finallink);
+				res.redirect(result[0].finallink);
+			});
+		}
+		else {
+			// redirect to mainpage
+		}
+	});
 });
 
 
@@ -46,9 +51,11 @@ app.use(bodyParser.urlencoded({
 app.post('/link', function(req, res) {
     var linkKey = req.body.linkKey;
     var link = req.body.linkURL;
-	checkExisting(linkKey, function() {
-		query("INSERT INTO links (linkkey, finallink) VALUES ('" + linkKey + "', '" + link + "');");
-		console.log("now exists");
+	checkExisting(linkKey, function(found) {
+		if (!found) {
+			query("INSERT INTO links (linkkey, finallink) VALUES ('" + linkKey + "', '" + link + "');");
+			console.log("now exists");
+		};
 	});
 });
 
@@ -61,8 +68,6 @@ function query(q) {
 	con.query(q, function(err) {
         if (err) {
             console.log("error ", err);
-        } else {
-            console.log("all good!!!");
         }
     })
 }
@@ -73,17 +78,16 @@ function checkExisting(key, callback) {
             console.log("error ", err);
         }
         for (var i = res.length - 1; i >= 0; i--) {
-        	console.log(key, res[i].linkkey);	
         	if (key === res[i].linkkey) {
-        		console.log("true");
-        		return;
+        		callback(true);
+        		break;
         	}
         };
-        callback();
+        callback(false);
     })
 }
 
-function getURL(key) {
+function getURL(key, callback) {
 	con.query("SELECT finallink FROM links WHERE linkkey='"+key+"';", function(err, res) {
     	if (err) {
             console.log("error ", err);
