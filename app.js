@@ -39,7 +39,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/link', function (req, res) {
-    console.log(req.body.linkKey);
+    var linkKey = req.body.linkKey;
+    var link = req.body.linkURL; 
 });
 
 // Listen on port 7002
