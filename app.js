@@ -41,7 +41,11 @@ app.use(bodyParser.urlencoded({
 app.post('/link', function (req, res) {
     var linkKey = req.body.linkKey;
     var link = req.body.linkURL;
-    console.log(linkKey, link); 
+    con.query("INSERT INTO shrtlnco (linkkey, finallink) VALUES ("+linkkey+", "+link+")", function(err) {
+        if(err) throw err;
+
+        console.log('err');
+    })
 });
 
 // Listen on port 7002
