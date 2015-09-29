@@ -48,8 +48,4 @@ http.listen(7002, function() {
 
 
 
-con.end(function(err) {
-  // The connection is terminated gracefully
-  // Ensures all previously enqueued queries are still
-  // before sending a COM_QUIT packet to the MySQL server.
-});
+// con.end(function(err) {});
