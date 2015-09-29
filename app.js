@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({
 app.post('/link', function (req, res) {
     var linkKey = req.body.linkKey;
     var link = req.body.linkURL;
-    con.query("INSERT INTO links (linkkey, finallink) VALUES (linkkey, finallink)", function(err) {
+    con.query("INSERT INTO links (linkkey, finallink) VALUES ('"+linkKey+"', '"+link+"'');", function(err) {
         console.log(err);
     })
 });
