@@ -7,18 +7,18 @@ var http = require('http').Server(app);
 var mysql = require("mysql");
 
 var con = mysql.createConnection({
-	host: "localhost",
-	database: "shrtlnco",
-	user: "root",
-	password: "shrtlnco"
+    host: "localhost",
+    database: "shrtlnco",
+    user: "root",
+    password: "ubuntu"
 });
 
-con.connect(function(err){
-  if(err){
-    console.log('Error connecting to Db');
-    return;
-  }
-  console.log('Connection established');
+con.connect(function(err) {
+    if (err) {
+        console.log('Error connecting to Db');
+        return;
+    }
+    console.log('Connection established');
 });
 
 // Get all files
@@ -28,17 +28,28 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/:link', function(req, res) {
+	var link = req.params.link;
+	console.log("at link");
+	if (checkExisting(link)) {
+		getURL(link, function(res) {
+			console.log(res);
+		});
+	}
+});
+
 
 app.use(bodyParser.urlencoded({
-  extended: true
+    extended: true
 }));
 
-app.post('/link', function (req, res) {
+app.post('/link', function(req, res) {
     var linkKey = req.body.linkKey;
     var link = req.body.linkURL;
-    con.query("INSERT INTO links (linkkey, finallink) VALUES ('"+linkKey+"', '"+link+"');", function(err) {
-        console.log(err);
-    })
+	checkExisting(linkKey, function() {
+		query("INSERT INTO links (linkkey, finallink) VALUES ('" + linkKey + "', '" + link + "');");
+		console.log("now exists");
+	});
 });
 
 // Listen on port 7002
@@ -46,6 +57,39 @@ http.listen(7002, function() {
     console.log('listening on port 7002');
 });
 
+function query(q) {
+	con.query(q, function(err) {
+        if (err) {
+            console.log("error ", err);
+        } else {
+            console.log("all good!!!");
+        }
+    })
+}
 
+function checkExisting(key, callback) {
+    con.query("SELECT linkkey FROM links;", function(err, res) {
+    	if (err) {
+            console.log("error ", err);
+        }
+        for (var i = res.length - 1; i >= 0; i--) {
+        	console.log(key, res[i].linkkey);	
+        	if (key === res[i].linkkey) {
+        		console.log("true");
+        		return;
+        	}
+        };
+        callback();
+    })
+}
+
+function getURL(key) {
+	con.query("SELECT finallink FROM links WHERE linkkey='"+key+"';", function(err, res) {
+    	if (err) {
+            console.log("error ", err);
+        }
+        callback(res);
+    })
+}
 
 // con.end(function(err) {});
