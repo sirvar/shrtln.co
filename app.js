@@ -34,7 +34,7 @@ app.get('/', function(req, res) {
 });
 
 
-app.use(bodyParser.urlEncoded());
+app.use(bodyParser.urlencoded());
 
 app.post('/link', function (req, res, next) {
   var data = myFunction(req.body);
