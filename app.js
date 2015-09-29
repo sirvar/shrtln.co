@@ -34,7 +34,9 @@ app.get('/', function(req, res) {
 });
 
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.post('/link', function (req, res, next) {
   var data = myFunction(req.body);
