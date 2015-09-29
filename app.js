@@ -38,9 +38,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.post('/link', function (req, res, next) {
-  var data = myFunction(req.body);
-  res.json(data);
+app.post('/link', function (req, res) {
+    console.log("works");
 });
 
 // Listen on port 7002
