@@ -33,11 +33,9 @@ app.get('/:link', function(req, res) {
 	checkExisting(link, function(found) {
 		if (found) {
 			getURL(link, function(result) {
-                console.log("yo1")
 				res.redirect("http://"+result[0].finallink);
 			});
 		} else {
-            console.log("yo2")
             res.redirect("/");
         }
 	});
@@ -54,7 +52,6 @@ app.post('/link', function(req, res) {
 	checkExisting(linkKey, function(found) {
 		if (!found) {
 			query("INSERT INTO links (linkkey, finallink) VALUES ('" + linkKey + "', '" + link + "');");
-			console.log("now exists");
             res.send({
                 success: true,
                 error: "Great! visit your new shrtln at <a href='http://shrtln.co/"+linkKey+"'>http://shrtln.co/"+linkKey+"</a>. Don't worry. We will never delete your shrtln."
