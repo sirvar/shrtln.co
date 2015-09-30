@@ -34,9 +34,11 @@ app.get('/:link', function(req, res) {
 		if (found) {
 			getURL(link, function(result) {
 				res.redirect("http://"+result[0].finallink);
+                res.end();
 			});
 		} else {
             res.redirect("/");
+            res.end();
         }
 	});
 });
