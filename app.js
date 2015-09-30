@@ -77,13 +77,16 @@ function checkExisting(key, callback) {
     	if (err) {
             console.log("error ", err);
         }
-        for (var i = res.length - 1; i >= 0; i--) {
-        	if (key === res[i].linkkey) {
-        		callback(true);
-        		return;
-        	}
-        }
-        callback(false);
+        // for (var i = res.length - 1; i >= 0; i--) {
+        // 	if (key === res[i].linkkey) {
+        // 		callback(true);
+        // 		return;
+        // 	}
+        // }
+        callback(res.map(function(row) {
+            return row.linkkey;
+        }).indexOf(key) >= 0);
+        // callback(false);
     })
 }
 
