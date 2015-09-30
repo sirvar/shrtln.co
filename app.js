@@ -36,7 +36,8 @@ app.get('/:link', function(req, res) {
 				res.redirect("http://"+result[0].finallink);
 			});
 		} else {
-            res.redirect("/");
+            console.log("yo");
+            // res.redirect("/");
         }
 	});
 });
