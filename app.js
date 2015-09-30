@@ -32,12 +32,10 @@ app.get('/:link', function(req, res) {
 	var link = req.params.link;
 	checkExisting(link, function(found) {
 		if (found) {
-            console.log("yo1");
 			getURL(link, function(result) {
 				res.redirect("http://"+result[0].finallink);
 			});
 		} else {
-            console.log("yo");
             res.redirect("/");
         }
 	});
