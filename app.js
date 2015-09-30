@@ -80,7 +80,7 @@ function checkExisting(key, callback) {
         for (var i = res.length - 1; i >= 0; i--) {
         	if (key === res[i].linkkey) {
         		callback(true);
-        		break;
+        		return;
         	}
         }
         callback(false);
