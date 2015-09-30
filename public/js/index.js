@@ -3,6 +3,8 @@ $(document).ready(function() {
 		$.post('/link', {
 			linkKey: $("#key").val(),
 			linkURL: $("#link").val()
+		}, function(res) {
+			$("#error").val(res.error);
 		});
 	});
 });

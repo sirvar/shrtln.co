@@ -2,12 +2,27 @@
 <html>
 <head>
 	<title>shrtln.co</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
-<input type="text" placeholder="link key" id="key">
-<input type="text" placeholder="link" id="link">
-<button id="create">create</button>
+<div id="container">
+	<div id="header">
+		<h1>shrtl.<span><h3>co</h3></span></h1>
+	</div>
+	<div id="createLink">
+		<div id="key">
+			<h2>http://shrtln.co/</h2>
+			<input type="text" placeholder="ex. shrtln" id="key" maxlength="100">
+		</div>
+		<div id="url">
+			<h2>http://</h2>
+			<input style="width: 600px;" type="text" placeholder="ex. shrtln.co" id="link">
+		</div>
+		<button id="create">shrtln it</button>	
+	</div>
+	<h4 id="error">Ummmm. Something went wrong.</h4>
+</div>
 </body>
 </html>

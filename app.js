@@ -55,7 +55,16 @@ app.post('/link', function(req, res) {
 		if (!found) {
 			query("INSERT INTO links (linkkey, finallink) VALUES ('" + linkKey + "', '" + link + "');");
 			console.log("now exists");
-		};
+            res.send({
+                success: true,
+                error: "Great! visit your new shrtln at <a href='http://shrtln.co/"+linkKey+"'>http://shrtln.co/"+linkKey+"</a>. Don't worry. We will never delete your shrtln."
+            })
+		} else {
+            res.send({
+                success: false,
+                error: "Yeah... The shrtln "+ linkKey +" already exists. Please choose another one."
+            })
+        }
 	});
 });
 
