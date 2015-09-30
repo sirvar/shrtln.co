@@ -33,10 +33,11 @@ app.get('/:link', function(req, res) {
 	checkExisting(link, function(found) {
 		if (found) {
 			getURL(link, function(result) {
-				console.log(result[0].finallink);
 				res.redirect("http://"+result[0].finallink);
 			});
-		};
+		} else {
+            res.redirect("/");
+        }
 	});
 });
 
