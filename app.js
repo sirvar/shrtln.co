@@ -33,12 +33,12 @@ app.get('/:link', function(req, res) {
 	checkExisting(link, function(found) {
 		if (found) {
 			getURL(link, function(result) {
+                console.log("yo1")
 				res.redirect("http://"+result[0].finallink);
-                res.end();
 			});
 		} else {
+            console.log("yo2")
             res.redirect("/");
-            res.end();
         }
 	});
 });
@@ -82,7 +82,7 @@ function checkExisting(key, callback) {
         		callback(true);
         		break;
         	}
-        };
+        }
         callback(false);
     })
 }
