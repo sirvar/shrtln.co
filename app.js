@@ -52,11 +52,13 @@ app.post('/link', function(req, res) {
 	checkExisting(linkKey, function(found) {
 		if (!found) {
 			query("INSERT INTO links (linkkey, finallink) VALUES ('" + linkKey + "', '" + link + "');");
+            console.log("Great! visit your new shrtln at <a href='http://shrtln.co/"+linkKey+"'>http://shrtln.co/"+linkKey+"</a>. Don't worry. We will never delete your shrtln.");
             res.send({
                 success: true,
                 error: "Great! visit your new shrtln at <a href='http://shrtln.co/"+linkKey+"'>http://shrtln.co/"+linkKey+"</a>. Don't worry. We will never delete your shrtln."
             })
 		} else {
+            console.log("Yeah... The shrtln "+ linkKey +" already exists. Please choose another one.")
             res.send({
                 success: false,
                 error: "Yeah... The shrtln "+ linkKey +" already exists. Please choose another one."
