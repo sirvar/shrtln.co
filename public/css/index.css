@@ -32,6 +32,7 @@ h4 {
 	width: 60%;
 	text-align: center;
 	margin: 0 auto;
+	margin-top: 20px;
 }
 
 a {
@@ -41,7 +42,7 @@ a {
 button {
 	width: 100px;
 	height: 40px;
-	background: #e8e8e8;
+	background: #f7f7f7;
 	border: 1px solid #606060;
 	font-size: 18px;
 	cursor: pointer;
