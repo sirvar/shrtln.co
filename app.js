@@ -16,7 +16,7 @@ var con = mysql.createConnection({
     host: "localhost",
     database: "shrtlnco",
     user: "root",
-    password: "ubuntu"
+    password: "DATABASE_PASSWORD"
 });
 
 con.connect(function(err) {
