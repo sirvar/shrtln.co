@@ -35,6 +35,6 @@ $(document).ready(function() {
 
 	// Question mark click alert
 	$("#about").click(function() {
-		alert("shrtln.co is a simple link shortner with the ability to customize the shortened link. Feel free to use this as much as you want. Don't worry, I wont delete your links and they are 100% private.")
+		alert("shrtln.co is a simple link shortener with the ability to customize the shortened link. Feel free to use this as much as you want. Don't worry, I wont delete your links and they are 100% private.")
 	})
 });
