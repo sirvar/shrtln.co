@@ -7,7 +7,9 @@ Download MySQL
 $ sudo apt-get install mysql-server
 ```
 
-Create database `shrtlnco` and table `links`
+Create the database and table by running `setup.sh`.
+
+`$ ./setup.sh`
 
 To setup node modules, run command
 ```
