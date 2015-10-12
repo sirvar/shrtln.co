@@ -2,7 +2,7 @@
 (c) 2015 Rikin Katyal
 index.css
 */
-@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:300,400);
+@import url(https://fonts.googleapis.com/css?family=Product+Sans:300,400);
 
 body, html {
 	width: 100%;
@@ -13,13 +13,13 @@ body, html {
 
 * {
 	text-align: center;
-	font-family: "Roboto Slab";
+	font-family: "Product Sans";
 	font-weight: 400;
 	outline: none;
 }
 
 h1 {
-	font-family: "Roboto Slab";
+	font-family: "Product Sans";
 	font-weight: 300;
 }
 
